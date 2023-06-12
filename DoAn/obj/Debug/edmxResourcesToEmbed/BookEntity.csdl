@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLSACHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHITIETHOADON">
+    <Key>
+      <PropertyRef Name="MAHD" />
+      <PropertyRef Name="MASACH" />
+    </Key>
+    <Property Name="MAHD" Type="Int32" Nullable="false" />
+    <Property Name="MASACH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="GIATIEN" Type="Int32" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="THANHTIEN" Type="Int32" />
+    <NavigationProperty Name="HOADON" Relationship="Self.FK_CHITIETHOADON_HOADON" FromRole="CHITIETHOADON" ToRole="HOADON" />
+    <NavigationProperty Name="SACH" Relationship="Self.FK_CHITIETHOADON_SACH" FromRole="CHITIETHOADON" ToRole="SACH" />
+    <NavigationProperty Name="HOADON1" Relationship="Self.MAHD" FromRole="CHITIETHOADON" ToRole="HOADON" />
+  </EntityType>
+  <EntityType Name="CTPN">
+    <Key>
+      <PropertyRef Name="SOPN" />
+      <PropertyRef Name="MASACH" />
+    </Key>
+    <Property Name="SOPN" Type="Int32" Nullable="false" />
+    <Property Name="MASACH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="GIANHAP" Type="Int32" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <NavigationProperty Name="PHIEUNHAP" Relationship="Self.FK_CTPN_PHIEUNHAP" FromRole="CTPN" ToRole="PHIEUNHAP" />
+    <NavigationProperty Name="SACH" Relationship="Self.FK_CTPN_SACH" FromRole="CTPN" ToRole="SACH" />
+    <NavigationProperty Name="PHIEUNHAP1" Relationship="Self.SOPN" FromRole="CTPN" ToRole="PHIEUNHAP" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MAHD" Type="Int32" Nullable="false" />
+    <Property Name="MAKH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="NGAYLAP" Type="DateTime" Precision="0" />
+    <Property Name="TONGTIEN" Type="Int32" />
+    <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.FK_CHITIETHOADON_HOADON" FromRole="HOADON" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="CHITIETHOADONs1" Relationship="Self.MAHD" FromRole="HOADON" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="HOADON" ToRole="KHACHHANG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MAKH" />
+    </Key>
+    <Property Name="MAKH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_KHACHHANG" FromRole="KHACHHANG" ToRole="HOADON" />
+  </EntityType>
+  <EntityType Name="NHAXUATBAN">
+    <Key>
+      <PropertyRef Name="MANXB" />
+    </Key>
+    <Property Name="MANXB" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENNXB" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="PHIEUNHAPs" Relationship="Self.FK_PHIEUNHAP_NHAXUATBAN" FromRole="NHAXUATBAN" ToRole="PHIEUNHAP" />
+    <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_NHAXUATBAN" FromRole="NHAXUATBAN" ToRole="SACH" />
+    <NavigationProperty Name="SACHes1" Relationship="Self.MANXB" FromRole="NHAXUATBAN" ToRole="SACH" />
+  </EntityType>
+  <EntityType Name="PHIEUNHAP">
+    <Key>
+      <PropertyRef Name="SOPN" />
+    </Key>
+    <Property Name="SOPN" Type="Int32" Nullable="false" />
+    <Property Name="MANXB" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="NGAYNHAP" Type="DateTime" Precision="0" />
+    <Property Name="TONGTIEN" Type="Int32" />
+    <NavigationProperty Name="CTPNs" Relationship="Self.FK_CTPN_PHIEUNHAP" FromRole="PHIEUNHAP" ToRole="CTPN" />
+    <NavigationProperty Name="CTPNs1" Relationship="Self.SOPN" FromRole="PHIEUNHAP" ToRole="CTPN" />
+    <NavigationProperty Name="NHAXUATBAN" Relationship="Self.FK_PHIEUNHAP_NHAXUATBAN" FromRole="PHIEUNHAP" ToRole="NHAXUATBAN" />
+  </EntityType>
+  <EntityType Name="SACH">
+    <Key>
+      <PropertyRef Name="MASACH" />
+    </Key>
+    <Property Name="MASACH" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENSACH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MATG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MALOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="MANXB" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="GIA" Type="Int32" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.FK_CHITIETHOADON_SACH" FromRole="SACH" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="CTPNs" Relationship="Self.FK_CTPN_SACH" FromRole="SACH" ToRole="CTPN" />
+    <NavigationProperty Name="NHAXUATBAN" Relationship="Self.FK_SACH_NHAXUATBAN" FromRole="SACH" ToRole="NHAXUATBAN" />
+    <NavigationProperty Name="NHAXUATBAN1" Relationship="Self.MANXB" FromRole="SACH" ToRole="NHAXUATBAN" />
+    <NavigationProperty Name="TACGIA" Relationship="Self.FK_SACH_TACGIA" FromRole="SACH" ToRole="TACGIA" />
+    <NavigationProperty Name="THELOAI" Relationship="Self.FK_SACH_THELOAI" FromRole="SACH" ToRole="THELOAI" />
+    <NavigationProperty Name="THELOAI1" Relationship="Self.MALOAI" FromRole="SACH" ToRole="THELOAI" />
+    <NavigationProperty Name="TACGIA1" Relationship="Self.MATG" FromRole="SACH" ToRole="TACGIA" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TACGIA">
+    <Key>
+      <PropertyRef Name="MATG" />
+    </Key>
+    <Property Name="MATG" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENTG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_TACGIA" FromRole="TACGIA" ToRole="SACH" />
+    <NavigationProperty Name="SACHes1" Relationship="Self.MATG" FromRole="TACGIA" ToRole="SACH" />
+  </EntityType>
+  <EntityType Name="TAIKHOAN">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="THELOAI">
+    <Key>
+      <PropertyRef Name="MALOAI" />
+    </Key>
+    <Property Name="MALOAI" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TENTHELOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MOTATHELOAI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SACHes" Relationship="Self.FK_SACH_THELOAI" FromRole="THELOAI" ToRole="SACH" />
+    <NavigationProperty Name="SACHes1" Relationship="Self.MALOAI" FromRole="THELOAI" ToRole="SACH" />
+  </EntityType>
+  <Association Name="FK_CHITIETHOADON_HOADON">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MAHD" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MAHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CHITIETHOADON_SACH">
+    <End Role="SACH" Type="Self.SACH" Multiplicity="1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SACH">
+        <PropertyRef Name="MASACH" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MASACH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MAHD">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MAHD" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MAHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTPN_PHIEUNHAP">
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="1" />
+    <End Role="CTPN" Type="Self.CTPN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUNHAP">
+        <PropertyRef Name="SOPN" />
+      </Principal>
+      <Dependent Role="CTPN">
+        <PropertyRef Name="SOPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTPN_SACH">
+    <End Role="SACH" Type="Self.SACH" Multiplicity="1" />
+    <End Role="CTPN" Type="Self.CTPN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SACH">
+        <PropertyRef Name="MASACH" />
+      </Principal>
+      <Dependent Role="CTPN">
+        <PropertyRef Name="MASACH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SOPN">
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CTPN" Type="Self.CTPN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUNHAP">
+        <PropertyRef Name="SOPN" />
+      </Principal>
+      <Dependent Role="CTPN">
+        <PropertyRef Name="SOPN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_KHACHHANG">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKH" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MAKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUNHAP_NHAXUATBAN">
+    <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1" />
+    <End Role="PHIEUNHAP" Type="Self.PHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAXUATBAN">
+        <PropertyRef Name="MANXB" />
+      </Principal>
+      <Dependent Role="PHIEUNHAP">
+        <PropertyRef Name="MANXB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SACH_NHAXUATBAN">
+    <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1" />
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAXUATBAN">
+        <PropertyRef Name="MANXB" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="MANXB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MANXB">
+    <End Role="NHAXUATBAN" Type="Self.NHAXUATBAN" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAXUATBAN">
+        <PropertyRef Name="MANXB" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="MANXB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SACH_TACGIA">
+    <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1" />
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TACGIA">
+        <PropertyRef Name="MATG" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="MATG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SACH_THELOAI">
+    <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1" />
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THELOAI">
+        <PropertyRef Name="MALOAI" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="MALOAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MALOAI">
+    <End Role="THELOAI" Type="Self.THELOAI" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THELOAI">
+        <PropertyRef Name="MALOAI" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="MALOAI" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MATG">
+    <End Role="TACGIA" Type="Self.TACGIA" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SACH" Type="Self.SACH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TACGIA">
+        <PropertyRef Name="MATG" />
+      </Principal>
+      <Dependent Role="SACH">
+        <PropertyRef Name="MATG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BookEntity" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETHOADONs" EntityType="Self.CHITIETHOADON" />
+    <EntitySet Name="CTPNs" EntityType="Self.CTPN" />
+    <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="NHAXUATBANs" EntityType="Self.NHAXUATBAN" />
+    <EntitySet Name="PHIEUNHAPs" EntityType="Self.PHIEUNHAP" />
+    <EntitySet Name="SACHes" EntityType="Self.SACH" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TACGIAs" EntityType="Self.TACGIA" />
+    <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+    <EntitySet Name="THELOAIs" EntityType="Self.THELOAI" />
+    <AssociationSet Name="FK_CHITIETHOADON_HOADON" Association="Self.FK_CHITIETHOADON_HOADON">
+      <End Role="HOADON" EntitySet="HOADONs" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CHITIETHOADON_SACH" Association="Self.FK_CHITIETHOADON_SACH">
+      <End Role="SACH" EntitySet="SACHes" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="MAHD" Association="Self.MAHD">
+      <End Role="HOADON" EntitySet="HOADONs" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTPN_PHIEUNHAP" Association="Self.FK_CTPN_PHIEUNHAP">
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+      <End Role="CTPN" EntitySet="CTPNs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTPN_SACH" Association="Self.FK_CTPN_SACH">
+      <End Role="SACH" EntitySet="SACHes" />
+      <End Role="CTPN" EntitySet="CTPNs" />
+    </AssociationSet>
+    <AssociationSet Name="SOPN" Association="Self.SOPN">
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+      <End Role="CTPN" EntitySet="CTPNs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_KHACHHANG" Association="Self.FK_HOADON_KHACHHANG">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUNHAP_NHAXUATBAN" Association="Self.FK_PHIEUNHAP_NHAXUATBAN">
+      <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
+      <End Role="PHIEUNHAP" EntitySet="PHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SACH_NHAXUATBAN" Association="Self.FK_SACH_NHAXUATBAN">
+      <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
+      <End Role="SACH" EntitySet="SACHes" />
+    </AssociationSet>
+    <AssociationSet Name="MANXB" Association="Self.MANXB">
+      <End Role="NHAXUATBAN" EntitySet="NHAXUATBANs" />
+      <End Role="SACH" EntitySet="SACHes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SACH_TACGIA" Association="Self.FK_SACH_TACGIA">
+      <End Role="TACGIA" EntitySet="TACGIAs" />
+      <End Role="SACH" EntitySet="SACHes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SACH_THELOAI" Association="Self.FK_SACH_THELOAI">
+      <End Role="THELOAI" EntitySet="THELOAIs" />
+      <End Role="SACH" EntitySet="SACHes" />
+    </AssociationSet>
+    <AssociationSet Name="MALOAI" Association="Self.MALOAI">
+      <End Role="THELOAI" EntitySet="THELOAIs" />
+      <End Role="SACH" EntitySet="SACHes" />
+    </AssociationSet>
+    <AssociationSet Name="MATG" Association="Self.MATG">
+      <End Role="TACGIA" EntitySet="TACGIAs" />
+      <End Role="SACH" EntitySet="SACHes" />
+    </AssociationSet>
+    <FunctionImport Name="MAKH_AUTO">
+      <Parameter Name="MAKH" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MALOAI_AUTO">
+      <Parameter Name="MALOAI" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MANXB_AUTO">
+      <Parameter Name="MASACH" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MASACH_AUTO">
+      <Parameter Name="MASACH" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MATG_AUTO">
+      <Parameter Name="MATG" Mode="InOut" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLSACHModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLSACHModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="THEMCTHD">
+      <Parameter Name="mahd" Mode="In" Type="Int32" />
+      <Parameter Name="masach" Mode="In" Type="String" />
+      <Parameter Name="giatien" Mode="In" Type="Int32" />
+      <Parameter Name="soluong" Mode="In" Type="Int32" />
+      <Parameter Name="tongtien" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="THEMCTPN">
+      <Parameter Name="SOPN" Mode="In" Type="Int32" />
+      <Parameter Name="masach" Mode="In" Type="String" />
+      <Parameter Name="gianhap" Mode="In" Type="Int32" />
+      <Parameter Name="soluong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="THEMHOADON">
+      <Parameter Name="MAHD" Mode="In" Type="Int32" />
+      <Parameter Name="makh" Mode="In" Type="String" />
+      <Parameter Name="ngaylap" Mode="In" Type="DateTime" />
+      <Parameter Name="tongtien" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="THEMKH">
+      <Parameter Name="tenkh" Mode="In" Type="String" />
+      <Parameter Name="sdt" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="THEMNXB">
+      <Parameter Name="tennxb" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="THEMPHIEUNHAP">
+      <Parameter Name="SOPN" Mode="In" Type="Int32" />
+      <Parameter Name="manxb" Mode="In" Type="String" />
+      <Parameter Name="ngaylap" Mode="In" Type="DateTime" />
+      <Parameter Name="tongtien" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="THEMSACH">
+      <Parameter Name="tensach" Mode="In" Type="String" />
+      <Parameter Name="matg" Mode="In" Type="String" />
+      <Parameter Name="matl" Mode="In" Type="String" />
+      <Parameter Name="nxb" Mode="In" Type="String" />
+      <Parameter Name="gia" Mode="In" Type="Int32" />
+      <Parameter Name="soluong" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="THEMTACGIA">
+      <Parameter Name="tentacgia" Mode="In" Type="String" />
+      <Parameter Name="sdt" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="THEMTHELOAI">
+      <Parameter Name="tentheloai" Mode="In" Type="String" />
+      <Parameter Name="motatl" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="update_khachhang">
+      <Parameter Name="makh" Mode="In" Type="String" />
+      <Parameter Name="Tenkh" Mode="In" Type="String" />
+      <Parameter Name="SDT" Mode="In" Type="String" />
+      <Parameter Name="Diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="update_nhaxuatban">
+      <Parameter Name="manxb" Mode="In" Type="String" />
+      <Parameter Name="Tennxb" Mode="In" Type="String" />
+      <Parameter Name="diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="update_sach">
+      <Parameter Name="masach" Mode="In" Type="String" />
+      <Parameter Name="tensach" Mode="In" Type="String" />
+      <Parameter Name="matg" Mode="In" Type="String" />
+      <Parameter Name="matheloai" Mode="In" Type="String" />
+      <Parameter Name="manxb" Mode="In" Type="String" />
+      <Parameter Name="gia" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="update_tacgia">
+      <Parameter Name="matg" Mode="In" Type="String" />
+      <Parameter Name="Tentg" Mode="In" Type="String" />
+      <Parameter Name="SDT" Mode="In" Type="String" />
+      <Parameter Name="Diachi" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="update_theloai">
+      <Parameter Name="maloai" Mode="In" Type="String" />
+      <Parameter Name="Tentl" Mode="In" Type="String" />
+      <Parameter Name="mota" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

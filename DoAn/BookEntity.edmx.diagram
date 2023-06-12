@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d0248188203b4411a98318305e0d31f2" Name="Diagram1">
+        <EntityTypeShape EntityType="QLSACHModel.CHITIETHOADON" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.CTPN" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.HOADON" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.NHAXUATBAN" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.PHIEUNHAP" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.SACH" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.sysdiagram" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.TACGIA" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.TAIKHOAN" Width="1.5" PointX="4.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLSACHModel.THELOAI" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <AssociationConnector Association="QLSACHModel.FK_CHITIETHOADON_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_CHITIETHOADON_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.MAHD" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_CTPN_PHIEUNHAP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_CTPN_SACH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.SOPN" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_HOADON_KHACHHANG" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_PHIEUNHAP_NHAXUATBAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_SACH_NHAXUATBAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.MANXB" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_SACH_TACGIA" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.FK_SACH_THELOAI" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.MALOAI" ManuallyRouted="false" />
+        <AssociationConnector Association="QLSACHModel.MATG" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
